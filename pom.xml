@@ -8,14 +8,15 @@
         <version>2.3.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.nousix.course.k8s</groupId>
-    <artifactId>app-example</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.nousix</groupId>
+    <artifactId>coruscant</artifactId>
+    <version>0.0.9-SNAPSHOT</version>
     <name>coruscant</name>
-    <description>App</description>
+    <description>Core Services</description>
 
     <properties>
         <java.version>1.8</java.version>
+        <jib-maven-plugin.version>2.4.0</jib-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -64,6 +65,34 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <container>
+                        <ports>
+                            <port>8080</port>
+                        </ports>
+                    </container>
+                    <from>
+                        <image>gcr.io/distroless/java:8</image>
+                    </from>
+                    <to>
+                        <image>juanlopezcervero/coruscant:${project.version}</image>
+                        <auth>
+                            <username>juanlopezcervero</username>
+                            <password>jlopez2011</password>
+                        </auth>
+                    </to>
+                    <container>
+                        <jvmFlags>
+                            <jvmFlag>-Xms64m</jvmFlag>
+                        </jvmFlags>
+                        <mainClass>com.nousix.coruscant.CoruscantApplication</mainClass>
+                    </container>
+                </configuration>
             </plugin>
         </plugins>
     </build>
