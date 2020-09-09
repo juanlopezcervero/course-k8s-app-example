@@ -19,14 +19,30 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: GREETING_WORD
-              value: Hola
-            - name: MY_NAME
-              value: Curso K8s!!!
-            - name: SECRET_ONE
-              value: Secreto Nro. 1
-            - name: SECRET_TWO
-              value: Secreto Nro. 2
-            - name: MY_BROTHER
-              value: meran-example-y-service.delta-ns:8080
+          - name: GREETING_WORD
+            valueFrom:
+              configMapKeyRef:
+                # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: meran-example-config
+                # Specify the key associated with the value
+                key: word.to.say.hi
+          - name: MY_NAME
+            valueFrom:
+              configMapKeyRef:
+                # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+                name: meran-example-config
+                # Specify the key associated with the value
+                key: say.my.name
+          - name: SECRET_ONE
+            valueFrom:
+              secretKeyRef:
+                name: meran-secrets
+                key: meran-secret-one
+          - name: SECRET_TWO
+            valueFrom:
+              secretKeyRef:
+                name: meran-secrets
+                key: meran-secret-two
+          - name: MY_BROTHER
+            value: meran-example-y-service.delta-ns:8080
 
