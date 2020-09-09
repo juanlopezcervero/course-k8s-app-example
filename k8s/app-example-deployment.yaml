@@ -18,6 +18,11 @@ spec:
           image: juanlopezcervero/coruscant:0.0.10-SNAPSHOT
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              memory: "150Mi"
+            limits:
+              memory: "250Mi"
           env:
           - name: GREETING_WORD
             valueFrom:
@@ -45,4 +50,19 @@ spec:
                 key: meran-secret-two
           - name: MY_BROTHER
             value: meran-example-y-service.delta-ns:8080
-
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 3
+            failureThreshold: 1
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 20
+            timeoutSeconds: 2
+            periodSeconds: 8
+            failureThreshold: 1
