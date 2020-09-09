@@ -1,12 +1,12 @@
 apiVersion: v1
-kind: Service
+kind:
 metadata:
-  name: meran-example-x-service
-  namespace: apis-ns
+  name:
+  namespace:
 spec:
-  type: ClusterIP
+  type:
   ports:
-    - name: api-port
-      port: 8080
+    - name:
+      port:
   selector:
-    app: meran-x
+    app:

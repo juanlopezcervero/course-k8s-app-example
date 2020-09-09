@@ -1,32 +1,24 @@
 apiVersion: apps/v1
-kind: Deployment
+kind:
 metadata:
-  name: meran-deployment-x
-  namespace: apis-ns
+  name:
+  namespace:
 spec:
   selector:
     matchLabels:
-      app: meran-x
-  replicas: 2
+      app:
+  replicas:
   template:
     metadata:
       labels:
-        app: meran-x
+        app:
     spec:
       containers:
-        - name: meran-x
-          image: juanlopezcervero/coruscant:0.0.10-SNAPSHOT
+        - name:
+          image:
           ports:
-            - containerPort: 8080
+            - containerPort:
           env:
-            - name: GREETING_WORD
-              value: Hola
-            - name: MY_NAME
-              value: Curso K8s!!!
-            - name: SECRET_ONE
-              value: Secreto Nro. 1
-            - name: SECRET_TWO
-              value: Secreto Nro. 2
-            - name: MY_BROTHER
-              value: meran-example-y-service.delta-ns:8080
+            - name:
+              value:
 
